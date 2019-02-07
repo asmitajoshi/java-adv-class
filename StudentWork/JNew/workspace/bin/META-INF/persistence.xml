@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persistence version="2.0" 
+ xmlns="http://java.sun.com/xml/ns/persistence"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  
+  <persistence-unit name="javatunes" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <properties>
+      <!--
+       | JPA CONNECTION PROPERTIES
+      -->
+      <property name='javax.persistence.jdbc.url'      value='jdbc:derby:JavaTunesEmbeddedDB'/>
+      
+      <!-- can be auto-detected from JDBC driver JAR, specified here for completeness -->
+      <property name='javax.persistence.jdbc.driver'   value='org.apache.derby.jdbc.ClientDriver'/>
+      
+      <!-- not needed for embedded Derby - database is created with default user 'APP'
+      <property name='javax.persistence.jdbc.user'     value='guest'/>
+      <property name='javax.persistence.jdbc.password' value='password'/>
+      -->
+      
+      <!--
+       | HIBERNATE-SPECIFIC PROPERTIES
+      -->
+      <!-- can be auto-detected by DB connection properties above, specified here for completeness -->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyDialect"/>
+      
+      <!-- show SQL statements -->
+      <property name="hibernate.show_sql" value="true"/>
+      
+      <!-- use thread local contextual sessions -->
+      <property name="hibernate.current_session_context_class" value="thread"/>
+      
+      <!-- reduce size of internal Hibernate connection pool -->
+      <property name="hibernate.connection.pool_size" value="1"/>
+      
+      <!-- disable second-level cache -->
+      <property name="hibernate.cache.use_second_level_cache" value="false"/>
+    </properties>
+  </persistence-unit>
+
+</persistence>

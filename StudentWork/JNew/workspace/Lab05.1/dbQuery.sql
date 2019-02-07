@@ -1,0 +1,5 @@
+AUTOCOMMIT OFF;
+
+SELECT * FROM item;
+
+COMMIT;
